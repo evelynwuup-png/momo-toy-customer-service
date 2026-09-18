@@ -5,7 +5,7 @@ const unsupportedReply = {
 
 const groups = [
   {
-    keywords: ['ship to the us', 'ship to us', 'shipping to the us', 'do you ship', 'do you deliver', 'ship to new york', 'deliver to new york', 'new york', 'nyc', '纽约', '配送到', '配送至', '支持配送', '配送服务', 'whole us', 'all states', 'whole united states', '配送至美国', '美国配送', '全美配送', '全美', '美国全境', '美国各州'],
+    keywords: ['ship to the us', 'ship to us', 'shipping to the us', 'do you ship', 'do you deliver', 'ship to new york', 'deliver to new york', 'new york', 'nyc', '纽约', '配送', '配送到', '配送至', '支持配送', '配送服务', 'whole us', 'all states', 'whole united states', '配送至美国', '美国配送', '全美配送', '全美', '美国全境', '美国各州'],
     en: 'Yes, MOMO TOY supports shipping to the United States.',
     zh: '是的，MOMO TOY 支持配送至美国。',
     questions: [
@@ -23,7 +23,7 @@ const groups = [
     ]
   },
   {
-    keywords: ['tracking', 'tracking number', 'track my order', 'logistics', '单独发物流', '发物流', '查物流', '查询物流', '物流查询', '订单物流', '物流单号', '追踪'],
+    keywords: ['tracking', 'tracking number', 'track my order', 'logistics', '物流', '单独发物流', '发物流', '查物流', '查询物流', '物流查询', '订单物流', '物流单号', '追踪'],
     en: 'After your order ships, tracking information will be sent to you by email.',
     zh: '订单发货后，你会通过邮箱收到物流追踪信息。',
     questions: [

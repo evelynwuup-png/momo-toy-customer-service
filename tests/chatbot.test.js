@@ -122,6 +122,14 @@ test('handles city delivery, standalone logistics, timing, and delivery wording'
   assert.match(delivery.en, /supports shipping to the United States/);
 });
 
+test('answers standalone delivery and logistics keywords', () => {
+  const delivery = getReply('配送');
+  const logistics = getReply('物流');
+
+  assert.match(delivery.en, /supports shipping to the United States/);
+  assert.match(logistics.en, /tracking information/);
+});
+
 test('covers gift, wholesale, and tracking keywords', () => {
   assert.match(getReply('Can I buy it as a gift?').en, /purchased as gifts/);
   assert.match(getReply('Do you support wholesale cooperation?').en, /bulk purchases/);
