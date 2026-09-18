@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MOMO TOY Customer Service Demo</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="chat-card" aria-label="MOMO TOY customer service chatbot">
+        <header class="brand-header">
+          <div class="brand-mark">M</div>
+          <div>
+            <p class="eyebrow">MOMO TOY</p>
+            <h1>Customer Service Demo</h1>
+          </div>
+          <span class="status"><i></i> Online</span>
+        </header>
+
+        <div class="demo-note"><span>课堂演示版 · Offline classroom demo</span><span id="round-status">Demo rounds: 0/5</span></div>
+        <div id="messages" class="messages" aria-live="polite"></div>
+
+        <div class="quick-actions" aria-label="Classroom demo questions">
+          <button data-question="How long does shipping take?">Shipping time</button>
+          <button data-question="How much is one blind box?">Price</button>
+          <button data-question="Can I return an opened blind box?">Opened blind box</button>
+          <button data-question="Can you check my order status?">Order status</button>
+          <button data-question="Do I need to pay customs fees?">Unknown test</button>
+          <button data-question="When will your next collection launch?">Release date</button>
+        </div>
+
+        <form id="chat-form" class="composer">
+          <label class="sr-only" for="user-input">Type your question</label>
+          <input id="user-input" autocomplete="off" placeholder="Ask about shipping, returns, blind boxes..." />
+          <button type="submit">Send</button>
+        </form>
+        <button id="reset-chat" class="reset-button" type="button">Reset demo</button>
+      </section>
+      <p class="footer-note">MOMO TOY · Original designer collectible brand</p>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

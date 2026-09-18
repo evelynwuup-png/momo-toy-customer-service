@@ -1,0 +1,105 @@
+const unsupported = {
+  en: "I’m sorry, but I don’t have confirmed information about that yet. Please leave your email so our official team can follow up.",
+  zh: "很抱歉，目前我没有关于该信息的确切资料。请留下你的邮箱，以便官方团队后续跟进。"
+};
+
+const emailReply = {
+  en: 'Thanks, I’ve noted your email. Our official team can follow up with you.',
+  zh: '谢谢，我已经记录你的邮箱。官方团队会进一步联系你。'
+};
+
+const replies = [
+  [['full box', 'whole box', 'box set', 'case', '端盒', '整盒'], 'A full box is $49.', '端盒价格为49美元。'],
+  [['one blind box', 'single blind box', 'single box', '单盒', '一个盲盒'], 'One blind box is $9.9.', '单盒价格为9.9美元。'],
+  [['ship to the us', 'ship to us', 'shipping to the us', '配送至美国', '美国配送'], 'Yes, MOMO TOY supports shipping to the United States.', '是的，MOMO TOY 支持配送至美国。'],
+  [['shipping time', 'delivery time', 'how long', 'arrive', 'shipping', 'delivery', '多久', '配送时效'], 'US orders usually take around 5-10 business days to arrive.', '美国订单预计配送时间为5-10个工作日。'],
+  [['opened blind box', 'open blind box', '拆开', '不喜欢', 'character'], 'Sorry, opened blind boxes cannot be returned simply because you do not like the character you received.', '很抱歉，已经拆开的盲盒不能因为不喜欢抽到的款式而退换。'],
+  [['return', 'exchange', '退货', '换货'], 'Unopened, undamaged products can be returned or exchanged within 30 days.', '未拆封且无破损的产品支持30天内退换。'],
+  [['damaged', 'damage', 'broken', '损坏', '破损'], 'If your item was damaged during shipping, please contact official support and provide photos of the item and packaging.', '如果商品在运输过程中损坏，请联系官方客服，并提供商品和包装照片。'],
+  [['free shipping', 'shipping fee', '运费', '免运费'], 'US orders of $50 or more qualify for free shipping.', '美国订单满50美元免运费。'],
+  [['tracking', 'track my order', '追踪', '物流单号'], 'After your order ships, tracking information will be sent to you by email.', '订单发货后，你会通过邮箱收到物流追踪信息。'],
+  [['blind box', '盲盒'], 'Blind boxes contain random designs, including regular and sometimes hidden figures, so a specific style cannot be selected in advance.', '盲盒包含随机款式，部分系列有普通款和隐藏款，购买前无法指定具体款式。'],
+  [['original', 'authentic', '原创', '正品'], 'MOMO TOY products are original designer works.', 'MOMO TOY 产品为原创设计师作品。'],
+  [['collect', 'collection', '收藏'], 'MOMO TOY creates art toys for collectors and everyday display.', 'MOMO TOY 主要为收藏和日常展示打造艺术潮玩。'],
+  [['gift', 'present', '礼物'], 'Sure! MOMO TOY products can be purchased as gifts.', '当然可以！MOMO TOY 产品可以作为礼物购买。'],
+  [['bulk', 'wholesale', 'business', '批量', '合作'], 'For bulk purchases or business collaborations, please leave your email and our team will follow up.', '如需批量购买或商业合作，请留下邮箱，工作人员会进一步联系。'],
+  [['order status', 'where is my order', '订单状态', '我的订单'], 'I can help with general shipping questions, but I can’t confirm your specific order status from the information available here. Please check the tracking email sent after shipment or contact our support team.', '我可以帮助解答一般物流问题，但无法根据现有信息确认你的具体订单状态。请查看发货后的物流邮件，或联系官方客服。']
+];
+
+function isEmail(message) {
+  return /\b[^\s@]+@[^\s@]+\.[^\s@]+\b/.test(message);
+}
+
+function getReply(message) {
+  if (isEmail(message)) return emailReply;
+  const normalized = message.toLowerCase().trim();
+  const matched = replies.find(([keywords]) => keywords.some((keyword) => normalized.includes(keyword)));
+  return matched ? { en: matched[1], zh: matched[2] } : unsupported;
+}
+
+const messages = document.querySelector('#messages');
+const form = document.querySelector('#chat-form');
+const input = document.querySelector('#user-input');
+const roundStatus = document.querySelector('#round-status');
+const resetButton = document.querySelector('#reset-chat');
+let roundCount = 0;
+
+function addMessage(text, role) {
+  const bubble = document.createElement('div');
+  bubble.className = `message ${role}`;
+  bubble.textContent = text;
+  messages.append(bubble);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function addReply(reply) {
+  const bubble = document.createElement('div');
+  bubble.className = 'message bot';
+  const english = document.createElement('div');
+  english.textContent = reply.en;
+  const chinese = document.createElement('div');
+  chinese.className = 'chinese';
+  chinese.textContent = reply.zh;
+  bubble.append(english, chinese);
+  messages.append(bubble);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function submitQuestion(question) {
+  const text = question.trim();
+  if (!text) return;
+  addMessage(text, 'user');
+  addReply(getReply(text));
+  roundCount += 1;
+  roundStatus.textContent = `Demo rounds: ${Math.min(roundCount, 5)}/5`;
+  if (roundCount >= 5) roundStatus.classList.add('complete');
+}
+
+function resetChat() {
+  messages.innerHTML = '';
+  roundCount = 0;
+  roundStatus.textContent = 'Demo rounds: 0/5';
+  roundStatus.classList.remove('complete');
+  addReply({
+    en: 'Hi! I’m the MOMO TOY customer service assistant. I can help with products, shipping, returns, orders, and other common questions.',
+    zh: '你好！我是 MOMO TOY 在线客服助手，可以帮助你解答产品、物流、退换货、订单等常见问题。'
+  });
+}
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  submitQuestion(input.value);
+  input.value = '';
+  input.focus();
+});
+
+document.querySelectorAll('[data-question]').forEach((button) => {
+  button.addEventListener('click', () => submitQuestion(button.dataset.question));
+});
+
+resetButton.addEventListener('click', resetChat);
+
+addReply({
+  en: 'Hi! I’m the MOMO TOY customer service assistant. I can help with products, shipping, returns, orders, and other common questions.',
+  zh: '你好！我是 MOMO TOY 在线客服助手，可以帮助你解答产品、物流、退换货、订单等常见问题。'
+});
