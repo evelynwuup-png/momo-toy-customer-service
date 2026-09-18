@@ -36,8 +36,13 @@ function isEmail(message) {
 function getReply(message) {
   if (isEmail(message)) return emailReply;
   const normalized = message.toLowerCase().trim();
-  if (['store', 'offline store', '线下门店', '门店'].some((keyword) => normalized.includes(keyword))) return unsupported;
   if (['probability', 'odds', 'chance', '概率', '几率'].some((keyword) => normalized.includes(keyword))) return unsupported;
+  if (['store', 'offline store', 'physical store', '门店', '线下门店'].some((keyword) => normalized.includes(keyword))) {
+    return {
+      en: 'MOMO TOY is currently focused on online sales and does not have a confirmed offline store location in the US.',
+      zh: 'MOMO TOY 目前以线上销售为主，暂时没有已确认的美国线下门店地址。'
+    };
+  }
   const faqMatch = faqLibrary
     .map((entry) => ({
       entry,
