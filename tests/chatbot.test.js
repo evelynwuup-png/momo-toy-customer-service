@@ -1,6 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { getReply, isEmail } from '../src/chatbot.js';
+import { getFaqCount, getReply, isEmail } from '../src/chatbot.js';
+
+test('contains exactly 100 bilingual FAQ entries', () => {
+  assert.equal(getFaqCount(), 100);
+});
 
 test('answers shipping time in English and Chinese', () => {
   const reply = getReply('How long does shipping take?');
@@ -104,6 +108,18 @@ test('matches common Chinese and English variations for every core FAQ', () => {
   for (const [question, expected] of questions) {
     assert.match(getReply(question).en + getReply(question).zh, expected, question);
   }
+});
+
+test('handles city delivery, standalone logistics, timing, and delivery wording', () => {
+  const city = getReply('可以配送到纽约吗？');
+  const logistics = getReply('可以单独发物流吗？');
+  const timing = getReply('物流时效多久？');
+  const delivery = getReply('你们支持配送吗？');
+
+  assert.match(city.en, /supports shipping to the United States/);
+  assert.match(logistics.en, /tracking information/);
+  assert.match(timing.en, /5-10 business days/);
+  assert.match(delivery.en, /supports shipping to the United States/);
 });
 
 test('covers gift, wholesale, and tracking keywords', () => {
