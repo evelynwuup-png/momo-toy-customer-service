@@ -25,7 +25,7 @@ const replies = [
     zh: '单盒价格为9.9美元。'
   },
   {
-    keywords: ['ship to the us', 'ship to us', 'shipping to the us', 'whole us', 'all states', 'whole united states', '配送至美国', '美国配送'],
+    keywords: ['ship to the us', 'ship to us', 'shipping to the us', 'whole us', 'all states', 'whole united states', '配送至美国', '美国配送', '全美配送', '全美', '美国全境', '美国各州'],
     en: 'Yes, MOMO TOY supports shipping to the United States.',
     zh: '是的，MOMO TOY 支持配送至美国。'
   },

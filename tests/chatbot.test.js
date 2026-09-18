@@ -83,6 +83,12 @@ test('covers the added FAQ keywords without making unsupported claims', () => {
   assert.doesNotMatch(damaged.en, /shockproof packaging/);
 });
 
+test('matches Chinese question wording that contains the destination keyword', () => {
+  const reply = getReply('可以全美配送吗？');
+  assert.match(reply.en, /supports shipping to the United States/);
+  assert.match(reply.zh, /支持配送至美国/);
+});
+
 test('covers gift, wholesale, and tracking keywords', () => {
   assert.match(getReply('Can I buy it as a gift?').en, /purchased as gifts/);
   assert.match(getReply('Do you support wholesale cooperation?').en, /bulk purchases/);

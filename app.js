@@ -12,7 +12,7 @@ const replies = [
   [['full box', 'whole box', 'box set', 'case', '端盒', '整盒'], 'A full box is $49.', '端盒价格为49美元。'],
   [['price', 'prices', 'how much', '多少钱', '价格', '价钱'], 'One blind box is $9.9, and a full box is $49.', '单盒价格为9.9美元，端盒价格为49美元。'],
   [['one blind box', 'single blind box', 'single box', '单盒', '一个盲盒', '一个多少钱', '单个'], 'One blind box is $9.9.', '单盒价格为9.9美元。'],
-  [['ship to the us', 'ship to us', 'shipping to the us', 'whole us', 'all states', 'whole united states', '配送至美国', '美国配送'], 'Yes, MOMO TOY supports shipping to the United States.', '是的，MOMO TOY 支持配送至美国。'],
+  [['ship to the us', 'ship to us', 'shipping to the us', 'whole us', 'all states', 'whole united states', '配送至美国', '美国配送', '全美配送', '全美', '美国全境', '美国各州'], 'Yes, MOMO TOY supports shipping to the United States.', '是的，MOMO TOY 支持配送至美国。'],
   [['shipping time', 'delivery time', 'how long', 'arrive', 'shipping', 'delivery', '多久', '配送时效'], 'US orders usually take around 5-10 business days to arrive.', '美国订单预计配送时间为5-10个工作日。'],
   [['opened blind box', 'open blind box', '拆开', '不喜欢', 'character'], 'Sorry, opened blind boxes cannot be returned simply because you do not like the character you received.', '很抱歉，已经拆开的盲盒不能因为不喜欢抽到的款式而退换。'],
   [['return', 'exchange', '退货', '换货'], 'Unopened, undamaged products can be returned or exchanged within 30 days.', '未拆封且无破损的产品支持30天内退换。'],
