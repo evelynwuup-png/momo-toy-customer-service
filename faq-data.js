@@ -122,19 +122,58 @@ const groups = [
     ]
   },
   {
-    keywords: ['customs', 'tax', 'materials', 'safety', 'certification', 'stock', 'inventory', 'discount', 'store', 'offline store', 'new series', 'release date', '联名', '海关', '税费', '材料', '认证', '库存', '折扣', '门店', '新品', '发布日期'],
-    en: unsupportedReply.en,
-    zh: unsupportedReply.zh,
-    questions: [
-      'Do I need to pay customs fees?', 'What materials are used?', 'Do you have safety certifications?', 'How many are in stock?', 'Do you have any discounts?',
-      'Do you have a store in New York?', 'When will the next series launch?', 'Do you have collaboration brands?', '需要支付海关费用吗？', '什么时候发布新品？'
-    ]
+    keywords: ['collaboration', 'collaboration brands', '联名'],
+    en: 'MOMO TOY has no announced collaboration brands at this time.',
+    zh: '目前 MOMO TOY 暂无已公布的联名品牌。',
+    questions: ['Do you have collaboration brands?']
+  },
+  {
+    keywords: ['customs', 'customs fees', 'tax', '海关', '税费'],
+    en: 'Customs duties or local taxes may apply depending on the destination, and are generally the customer’s responsibility.',
+    zh: '不同目的地可能产生海关关税或当地税费，通常由顾客承担。',
+    questions: ['Do I need to pay customs fees?']
+  },
+  {
+    keywords: ['materials', 'material', '材质', '材料'],
+    en: 'MOMO TOY uses durable art-toy materials selected for the specific product series; please check the product details for exact information.',
+    zh: 'MOMO TOY 会根据具体系列选用耐用的潮玩材质，准确信息请以对应产品详情为准。',
+    questions: ['What materials are used?']
+  },
+  {
+    keywords: ['safety certifications', 'certification', 'certifications', '认证'],
+    en: 'Certification information depends on the product series and will be provided on the relevant product page when available.',
+    zh: '认证信息取决于具体产品系列，如有相关信息会在对应产品页面标注。',
+    questions: ['Do you have safety certifications?']
+  },
+  {
+    keywords: ['stock', 'in stock', 'inventory', '库存'],
+    en: 'Availability can change with sales, so please check the product page for the latest stock information.',
+    zh: '库存会随销售情况变化，请以产品页面显示的最新库存信息为准。',
+    questions: ['How many are in stock?']
+  },
+  {
+    keywords: ['discount', 'discounts', 'sale', '折扣', '优惠'],
+    en: 'We do not have a fixed discount offer to confirm right now; please check the official page for current promotions.',
+    zh: '目前没有可以确认的固定折扣，请以官方页面公布的活动信息为准。',
+    questions: ['Do you have any discounts?']
+  },
+  {
+    keywords: ['store', 'offline store', 'physical store', '门店', '线下门店'],
+    en: 'MOMO TOY is currently focused on online sales and does not have a confirmed offline store location in the US.',
+    zh: 'MOMO TOY 目前以线上销售为主，暂时没有已确认的美国线下门店地址。',
+    questions: ['Do you have a store in New York?']
+  },
+  {
+    keywords: ['new series', 'new collection', 'release date', 'launch', '新品', '发布日期', '发售'],
+    en: 'New product announcements will be shared through official channels; no specific release date is confirmed here yet.',
+    zh: '新品信息会通过官方渠道公布，目前这里没有可以确认的具体发布日期。',
+    questions: ['When will the next series launch?', 'Do you have a new collection coming?', 'When will the new products be released?']
   }
 ];
 
 // Keep the classroom knowledge base at exactly 100 high-frequency questions,
 // while retaining coverage across every supported topic.
-const quotas = [8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 5, 10];
+const quotas = [8, 8, 7, 7, 7, 7, 7, 7, 7, 7, 7, 6, 5, 1, 1, 1, 1, 1, 1, 1, 3];
 const FAQ_LIBRARY = groups.flatMap((group, index) => group.questions.slice(0, quotas[index]).map((question) => ({
   question,
   keywords: group.keywords,
