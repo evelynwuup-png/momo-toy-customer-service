@@ -66,3 +66,30 @@ test('returns both prices when the customer asks generally about price', () => {
   assert.match(reply.en, /\$9\.9/);
   assert.match(reply.en, /\$49/);
 });
+
+test('covers the added FAQ keywords without making unsupported claims', () => {
+  const destination = getReply('Do you ship to the whole US?');
+  const original = getReply('Are your toys original?');
+  const hidden = getReply('Is there a hidden style in the series?');
+  const damaged = getReply('Will the product be damaged during transportation?');
+
+  assert.match(destination.en, /supports shipping to the United States/);
+  assert.doesNotMatch(destination.en, /all states/);
+  assert.match(original.en, /original designer works/);
+  assert.doesNotMatch(original.en, /copyrighted/);
+  assert.match(hidden.en, /random designs/);
+  assert.doesNotMatch(hidden.en, /probability/);
+  assert.match(damaged.en, /provide photos/);
+  assert.doesNotMatch(damaged.en, /shockproof packaging/);
+});
+
+test('covers gift, wholesale, and tracking keywords', () => {
+  assert.match(getReply('Can I buy it as a gift?').en, /purchased as gifts/);
+  assert.match(getReply('Do you support wholesale cooperation?').en, /bulk purchases/);
+  assert.match(getReply('How do I track my order?').en, /tracking information/);
+});
+
+test('keeps unsupported store and release-date questions in the safe fallback', () => {
+  assert.match(getReply('Do you have a store in New York?').en, /don’t have confirmed information/);
+  assert.match(getReply('What is your next new series release date?').en, /don’t have confirmed information/);
+});

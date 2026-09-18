@@ -12,14 +12,14 @@ const replies = [
   [['full box', 'whole box', 'box set', 'case', '端盒', '整盒'], 'A full box is $49.', '端盒价格为49美元。'],
   [['price', 'prices', 'how much', '多少钱', '价格', '价钱'], 'One blind box is $9.9, and a full box is $49.', '单盒价格为9.9美元，端盒价格为49美元。'],
   [['one blind box', 'single blind box', 'single box', '单盒', '一个盲盒', '一个多少钱', '单个'], 'One blind box is $9.9.', '单盒价格为9.9美元。'],
-  [['ship to the us', 'ship to us', 'shipping to the us', '配送至美国', '美国配送'], 'Yes, MOMO TOY supports shipping to the United States.', '是的，MOMO TOY 支持配送至美国。'],
+  [['ship to the us', 'ship to us', 'shipping to the us', 'whole us', 'all states', 'whole united states', '配送至美国', '美国配送'], 'Yes, MOMO TOY supports shipping to the United States.', '是的，MOMO TOY 支持配送至美国。'],
   [['shipping time', 'delivery time', 'how long', 'arrive', 'shipping', 'delivery', '多久', '配送时效'], 'US orders usually take around 5-10 business days to arrive.', '美国订单预计配送时间为5-10个工作日。'],
   [['opened blind box', 'open blind box', '拆开', '不喜欢', 'character'], 'Sorry, opened blind boxes cannot be returned simply because you do not like the character you received.', '很抱歉，已经拆开的盲盒不能因为不喜欢抽到的款式而退换。'],
   [['return', 'exchange', '退货', '换货'], 'Unopened, undamaged products can be returned or exchanged within 30 days.', '未拆封且无破损的产品支持30天内退换。'],
   [['damaged', 'damage', 'broken', '损坏', '破损'], 'If your item was damaged during shipping, please contact official support and provide photos of the item and packaging.', '如果商品在运输过程中损坏，请联系官方客服，并提供商品和包装照片。'],
   [['free shipping', 'shipping fee', '运费', '免运费'], 'US orders of $50 or more qualify for free shipping.', '美国订单满50美元免运费。'],
   [['tracking', 'track my order', '追踪', '物流单号'], 'After your order ships, tracking information will be sent to you by email.', '订单发货后，你会通过邮箱收到物流追踪信息。'],
-  [['blind box', '盲盒'], 'Blind boxes contain random designs, including regular and sometimes hidden figures, so a specific style cannot be selected in advance.', '盲盒包含随机款式，部分系列有普通款和隐藏款，购买前无法指定具体款式。'],
+  [['blind box', 'hidden style', 'hidden styles', 'hidden figure', 'hidden figures', '盲盒', '隐藏款'], 'Blind boxes contain random designs, including regular and sometimes hidden figures, so a specific style cannot be selected in advance.', '盲盒包含随机款式，部分系列有普通款和隐藏款，购买前无法指定具体款式。'],
   [['original', 'authentic', '原创', '正品'], 'MOMO TOY products are original designer works.', 'MOMO TOY 产品为原创设计师作品。'],
   [['collect', 'collection', '收藏'], 'MOMO TOY creates art toys for collectors and everyday display.', 'MOMO TOY 主要为收藏和日常展示打造艺术潮玩。'],
   [['gift', 'present', '礼物'], 'Sure! MOMO TOY products can be purchased as gifts.', '当然可以！MOMO TOY 产品可以作为礼物购买。'],
@@ -34,6 +34,7 @@ function isEmail(message) {
 function getReply(message) {
   if (isEmail(message)) return emailReply;
   const normalized = message.toLowerCase().trim();
+  if (['probability', 'odds', 'chance', '概率', '几率'].some((keyword) => normalized.includes(keyword))) return unsupported;
   const matched = replies.find(([keywords]) => keywords.some((keyword) => normalized.includes(keyword)));
   return matched ? { en: matched[1], zh: matched[2] } : unsupported;
 }

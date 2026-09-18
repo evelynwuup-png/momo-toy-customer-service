@@ -25,7 +25,7 @@ const replies = [
     zh: '单盒价格为9.9美元。'
   },
   {
-    keywords: ['ship to the us', 'ship to us', 'shipping to the us', '配送至美国', '美国配送'],
+    keywords: ['ship to the us', 'ship to us', 'shipping to the us', 'whole us', 'all states', 'whole united states', '配送至美国', '美国配送'],
     en: 'Yes, MOMO TOY supports shipping to the United States.',
     zh: '是的，MOMO TOY 支持配送至美国。'
   },
@@ -60,7 +60,7 @@ const replies = [
     zh: '订单发货后，你会通过邮箱收到物流追踪信息。'
   },
   {
-    keywords: ['blind box', '盲盒'],
+    keywords: ['blind box', 'hidden style', 'hidden styles', 'hidden figure', 'hidden figures', '盲盒', '隐藏款'],
     en: 'Blind boxes contain random designs, including regular and sometimes hidden figures, so a specific style cannot be selected in advance.',
     zh: '盲盒包含随机款式，部分系列有普通款和隐藏款，购买前无法指定具体款式。'
   },
@@ -98,6 +98,9 @@ export function isEmail(message) {
 export function getReply(message) {
   if (isEmail(message)) return emailReply;
   const normalized = message.toLowerCase().trim();
+  if (['probability', 'odds', 'chance', '概率', '几率'].some((keyword) => normalized.includes(keyword))) {
+    return unsupported;
+  }
   const matched = replies.find(({ keywords }) => keywords.some((keyword) => normalized.includes(keyword)));
   return matched ? { en: matched.en, zh: matched.zh } : unsupported;
 }
