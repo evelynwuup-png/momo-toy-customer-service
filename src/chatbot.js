@@ -15,7 +15,12 @@ const replies = [
     zh: '端盒价格为49美元。'
   },
   {
-    keywords: ['one blind box', 'single blind box', 'single box', '单盒', '一个盲盒'],
+    keywords: ['price', 'prices', 'how much', '多少钱', '价格', '价钱'],
+    en: 'One blind box is $9.9, and a full box is $49.',
+    zh: '单盒价格为9.9美元，端盒价格为49美元。'
+  },
+  {
+    keywords: ['one blind box', 'single blind box', 'single box', '单盒', '一个盲盒', '一个多少钱', '单个'],
     en: 'One blind box is $9.9.',
     zh: '单盒价格为9.9美元。'
   },

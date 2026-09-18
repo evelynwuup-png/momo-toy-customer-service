@@ -54,3 +54,15 @@ test('answers the current single-box and full-box prices consistently', () => {
   assert.match(fullBox.en, /\$49/);
   assert.match(fullBox.zh, /49美元/);
 });
+
+test('understands natural Chinese price questions by keyword', () => {
+  const reply = getReply('你们家一个多少钱？');
+  assert.match(reply.en, /\$9\.9/);
+  assert.match(reply.zh, /9\.9美元/);
+});
+
+test('returns both prices when the customer asks generally about price', () => {
+  const reply = getReply('What is the price?');
+  assert.match(reply.en, /\$9\.9/);
+  assert.match(reply.en, /\$49/);
+});
