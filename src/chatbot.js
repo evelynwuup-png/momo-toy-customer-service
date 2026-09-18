@@ -20,6 +20,11 @@ const replies = [
     zh: '单盒价格为9.9美元，端盒价格为49美元。'
   },
   {
+    keywords: ['free shipping', 'shipping fee', 'shipping cost', '运费', '免运费'],
+    en: 'US orders of $50 or more qualify for free shipping.',
+    zh: '美国订单满50美元免运费。'
+  },
+  {
     keywords: ['one blind box', 'single blind box', 'single box', '单盒', '一个盲盒', '一个多少钱', '单个'],
     en: 'One blind box is $9.9.',
     zh: '单盒价格为9.9美元。'
@@ -30,7 +35,7 @@ const replies = [
     zh: '是的，MOMO TOY 支持配送至美国。'
   },
   {
-    keywords: ['shipping time', 'delivery time', 'how long', 'arrive', 'shipping', 'delivery', '多久', '配送时效'],
+    keywords: ['shipping time', 'delivery time', 'how long', 'arrive', 'shipping', 'delivery', '多久', '配送时效', '配送多久'],
     en: 'US orders usually take around 5-10 business days to arrive.',
     zh: '美国订单预计配送时间为5-10个工作日。'
   },
@@ -50,12 +55,7 @@ const replies = [
     zh: '如果商品在运输过程中损坏，请联系官方客服，并提供商品和包装照片。'
   },
   {
-    keywords: ['free shipping', 'shipping fee', '运费', '免运费'],
-    en: 'US orders of $50 or more qualify for free shipping.',
-    zh: '美国订单满50美元免运费。'
-  },
-  {
-    keywords: ['tracking', 'track my order', '追踪', '物流单号'],
+    keywords: ['tracking', 'tracking number', 'track my order', '查物流', '查询物流', '物流查询', '订单物流', '追踪', '物流单号'],
     en: 'After your order ships, tracking information will be sent to you by email.',
     zh: '订单发货后，你会通过邮箱收到物流追踪信息。'
   },
@@ -80,7 +80,7 @@ const replies = [
     zh: '当然可以！MOMO TOY 产品可以作为礼物购买。'
   },
   {
-    keywords: ['bulk', 'wholesale', 'business', '批量', '合作'],
+    keywords: ['bulk', 'wholesale', 'business', '批量', '批发', '合作'],
     en: 'For bulk purchases or business collaborations, please leave your email and our team will follow up.',
     zh: '如需批量购买或商业合作，请留下邮箱，工作人员会进一步联系。'
   },

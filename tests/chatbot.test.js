@@ -89,6 +89,23 @@ test('matches Chinese question wording that contains the destination keyword', (
   assert.match(reply.zh, /支持配送至美国/);
 });
 
+test('matches common Chinese and English variations for every core FAQ', () => {
+  const questions = [
+    ['美国订单多久到？', /5-10个工作日/],
+    ['怎么查物流？', /物流追踪/],
+    ['运费怎么收？', /50美元免运费/],
+    ['运输会不会破损？', /运输过程中损坏/],
+    ['支持批发吗？', /批量购买/],
+    ['Can I get a tracking number?', /tracking information/],
+    ['What is the shipping fee?', /\$50/],
+    ['Can I buy one as a present?', /purchased as gifts/]
+  ];
+
+  for (const [question, expected] of questions) {
+    assert.match(getReply(question).en + getReply(question).zh, expected, question);
+  }
+});
+
 test('covers gift, wholesale, and tracking keywords', () => {
   assert.match(getReply('Can I buy it as a gift?').en, /purchased as gifts/);
   assert.match(getReply('Do you support wholesale cooperation?').en, /bulk purchases/);
